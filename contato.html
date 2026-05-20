@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Contato - ShopingMarcasCG_PB</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .address-result {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: none;
+            border: 1px solid #c3e6cb;
+        }
+        .address-result.show {
+            display: block;
+        }
+        .address-result.loading {
+            background: #cce5ff;
+            color: #004085;
+            border-color: #b8daff;
+        }
+        .address-result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .info-endereco {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu de Navegação Fixo -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <h1>Shoping<span>MarcasCG_PB</span></h1>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Página de Contato -->
+    <section class="contact-page">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Fale Conosco</h3>
+                    <p>Estamos aqui para responder suas dúvidas e ouvir suas sugestões.</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Rua Fernendo Pereira dos Santos, 105 - Campina Grande-PB</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <i class="fab fa-whatsapp"></i>
+                        <p>(83) 981109396</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>felipemusicasgospel@gmail.com</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/felipemusicasgospel"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61580476570012"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/5583981109396"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <h3>Envie sua mensagem</h3>
+                    
+                    <div class="form-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="name" required>
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>E-mail *</label>
+                        <input type="email" id="email" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Telefone *</label>
+                        <input type="tel" id="phone" placeholder="(11) 99999-9999" required>
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+                    
+                    <h3>Endereço <span style="font-size:0.8rem; font-weight:normal;">(opcional)</span></h3>
+                    
+                    <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" id="cep" placeholder="Ex: 01001000" autocomplete="off" maxlength="9">
+                        <span class="info-endereco">Digite apenas números - o endereço será preenchido automaticamente</span>
+                    </div>
+                    
+                    <div id="addressResult" class="address-result">
+                        <p id="addressText" style="margin:0;"></p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Rua / Logradouro</label>
+                        <input type="text" id="street" readonly placeholder="Preenchido automaticamente">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Número</label>
+                            <input type="text" id="number" placeholder="Ex: 123">
+                        </div>
+                        <div class="form-group">
+                            <label>Complemento</label>
+                            <input type="text" id="complement" placeholder="Apto, Bloco">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" id="neighborhood" readonly placeholder="Preenchido automaticamente">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Cidade</label>
+                            <input type="text" id="city" readonly placeholder="Preenchido automaticamente">
+                        </div>
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <select id="state">
+                                <option value="">Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Mensagem *</label>
+                        <textarea id="message" rows="5" required placeholder="Digite sua mensagem aqui..."></textarea>
+                        <span class="error-message" id="messageError"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ShopingMarcasCG_PB</h3>
+                <p>Moda urbana para jovens que buscam estilo e conforto.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61580476570012"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FelipeMarcasCG_PB - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- NÃO TEM script.js AQUI - SÓ CÓDIGO INTERNO -->
+    <script>
+        (function() {
+            // Função para executar quando a página carregar
+            function iniciar() {
+                console.log('Página de contato carregada - Busca de CEP ativada');
+                
+                var cepInput = document.getElementById('cep');
+                var streetInput = document.getElementById('street');
+                var neighborhoodInput = document.getElementById('neighborhood');
+                var cityInput = document.getElementById('city');
+                var stateSelect = document.getElementById('state');
+                var addressResultDiv = document.getElementById('addressResult');
+                var addressText = document.getElementById('addressText');
+                var numberInput = document.getElementById('number');
+                
+                function apenasNumeros(texto) {
+                    if (!texto) return '';
+                    return texto.toString().replace(/\D/g, '');
+                }
+                
+                function formatarCEP(valor) {
+                    var numeros = apenasNumeros(valor);
+                    if (numeros.length <= 5) return numeros;
+                    return numeros.slice(0, 5) + '-' + numeros.slice(5, 8);
+                }
+                
+                function limparCampos() {
+                    if (streetInput) streetInput.value = '';
+                    if (neighborhoodInput) neighborhoodInput.value = '';
+                    if (cityInput) cityInput.value = '';
+                    if (stateSelect) stateSelect.value = '';
+                    if (addressResultDiv) {
+                        addressResultDiv.className = 'address-result';
+                        if (addressText) addressText.innerHTML = '';
+                    }
+                }
+                
+                function buscarEndereco(cep) {
+                    var cepNumeros = apenasNumeros(cep);
+                    
+                    if (cepNumeros.length !== 8) {
+                        if (cepNumeros.length > 0 && cepNumeros.length < 8) {
+                            if (addressResultDiv) {
+                                addressResultDiv.className = 'address-result error';
+                                if (addressText) addressText.innerHTML = '⚠️ CEP incompleto! Digite 8 números.';
+                            }
+                        } else {
+                            limparCampos();
+                        }
+                        return;
+                    }
+                    
+                    // Mostra loading
+                    if (addressResultDiv) {
+                        addressResultDiv.className = 'address-result loading';
+                        if (addressText) addressText.innerHTML = '🔄 Buscando endereço...';
+                    }
+                    
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'https://viacep.com.br/ws/' + cepNumeros + '/json/', true);
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            try {
+                                var dados = JSON.parse(xhr.responseText);
+                                if (dados.erro) {
+                                    if (addressResultDiv) {
+                                        addressResultDiv.className = 'address-result error';
+                                        if (addressText) addressText.innerHTML = '❌ CEP não encontrado!';
+                                    }
+                                    limparCampos();
+                                } else {
+                                    if (streetInput) streetInput.value = dados.logradouro || '';
+                                    if (neighborhoodInput) neighborhoodInput.value = dados.bairro || '';
+                                    if (cityInput) cityInput.value = dados.localidade || '';
+                                    if (stateSelect && dados.uf) stateSelect.value = dados.uf;
+                                    
+                                    if (addressResultDiv) {
+                                        addressResultDiv.className = 'address-result show';
+                                        if (addressText) addressText.innerHTML = '✅ Endereço encontrado: ' + (dados.logradouro || '') + ', ' + (dados.bairro || '') + ' - ' + (dados.localidade || '') + '/' + (dados.uf || '');
+                                    }
+                                    
+                                    if (numberInput) numberInput.focus();
+                                }
+                            } catch (e) {
+                                console.error('Erro:', e);
+                            }
+                        } else {
+                            if (addressResultDiv) {
+                                addressResultDiv.className = 'address-result error';
+                                if (addressText) addressText.innerHTML = '❌ Erro ao buscar CEP. Tente novamente.';
+                            }
+                        }
+                    };
+                    xhr.onerror = function() {
+                        if (addressResultDiv) {
+                            addressResultDiv.className = 'address-result error';
+                            if (addressText) addressText.innerHTML = '❌ Erro de conexão. Verifique sua internet.';
+                        }
+                    };
+                    xhr.send();
+                }
+                
+                if (cepInput) {
+                    cepInput.addEventListener('input', function(e) {
+                        var valor = e.target.value;
+                        var numeros = apenasNumeros(valor);
+                        var formatado = formatarCEP(numeros);
+                        e.target.value = formatado;
+                        
+                        if (numeros.length === 8) {
+                            buscarEndereco(numeros);
+                        } else if (numeros.length === 0) {
+                            limparCampos();
+                        }
+                    });
+                    
+                    cepInput.addEventListener('blur', function(e) {
+                        var numeros = apenasNumeros(e.target.value);
+                        if (numeros.length === 8) {
+                            buscarEndereco(numeros);
+                        }
+                    });
+                }
+                
+                // Formatar telefone
+                var telefone = document.getElementById('phone');
+                if (telefone) {
+                    telefone.addEventListener('input', function() {
+                        var value = this.value.replace(/\D/g, '');
+                        if (value.length > 11) value = value.slice(0, 11);
+                        if (value.length === 11) {
+                            value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                        } else if (value.length === 10) {
+                            value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                        }
+                        this.value = value;
+                    });
+                }
+                
+                // Enviar formulário
+                var form = document.getElementById('contactForm');
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        var nome = document.getElementById('name').value.trim();
+                        var email = document.getElementById('email').value.trim();
+                        var mensagem = document.getElementById('message').value.trim();
+                        
+                        if (!nome || nome.length < 3) {
+                            var errNome = document.getElementById('nameError');
+                            if (errNome) errNome.textContent = 'Nome inválido';
+                            return;
+                        } else {
+                            var errNome = document.getElementById('nameError');
+                            if (errNome) errNome.textContent = '';
+                        }
+                        
+                        if (!email || email.indexOf('@') === -1) {
+                            var errEmail = document.getElementById('emailError');
+                            if (errEmail) errEmail.textContent = 'E-mail inválido';
+                            return;
+                        } else {
+                            var errEmail = document.getElementById('emailError');
+                            if (errEmail) errEmail.textContent = '';
+                        }
+                        
+                        if (!mensagem || mensagem.length < 10) {
+                            var errMsg = document.getElementById('messageError');
+                            if (errMsg) errMsg.textContent = 'Mensagem muito curta';
+                            return;
+                        } else {
+                            var errMsg = document.getElementById('messageError');
+                            if (errMsg) errMsg.textContent = '';
+                        }
+                        
+                        alert('✅ Mensagem enviada com sucesso!\n\nObrigado ' + nome + '!');
+                        form.reset();
+                        limparCampos();
+                    });
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', iniciar);
+            } else {
+                iniciar();
+            }
+        })();
+    </script>
+</body>
+</html>

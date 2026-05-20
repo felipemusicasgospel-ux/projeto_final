@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ShopingMarcasCG_PB - Moda Urbana</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Menu de Navegação Fixo -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <h1>ShopingMarcas<span>CG_PB</span></h1>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrossel de Vantagens -->
+    <section class="carrossel-vantagens">
+        <div class="carrossel-container">
+            <div class="carrossel-slides" id="carrosselSlides">
+                <div class="carrossel-slide active">
+                    <i class="fas fa-truck-fast"></i>
+                    <h2>Frete Grátis</h2>
+                    <p>Para compras acima de R$ 150,00 em todo o Brasil</p>
+                </div>
+                <div class="carrossel-slide">
+                    <i class="fas fa-percent"></i>
+                    <h2>10% Off na Primeira Compra</h2>
+                    <p>Use o cupom PRIMEIRA10 e ganhe desconto</p>
+                </div>
+                <div class="carrossel-slide">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h2>Troca Rápida</h2>
+                    <p>30 dias para trocar ou devolver seu produto</p>
+                </div>
+                <div class="carrossel-slide">
+                    <i class="fas fa-shield-alt"></i>
+                    <h2>Compra Segura</h2>
+                    <p>Pagamento 100% protegido com SSL</p>
+                </div>
+                <div class="carrossel-slide">
+                    <i class="fas fa-star"></i>
+                    <h2>Produtos Originais</h2>
+                    <p>Garantia de autenticidade em todas as marcas</p>
+                </div>
+            </div>
+            <button class="carrossel-btn prev" id="prevSlide">&#10094;</button>
+            <button class="carrossel-btn next" id="nextSlide">&#10095;</button>
+            <div class="carrossel-indicadores" id="carrosselIndicadores"></div>
+        </div>
+    </section>
+
+    <!-- Produtos em Destaque -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Produtos em Destaque</h2>
+            <div class="products-grid" id="featured-grid">
+                <!-- Os produtos serão carregados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ShopingMarcasCG_PB</h3>
+                <p>Moda urbana para jovens que buscam estilo e conforto.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/felipemusicasgospel"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61580476570012&locale=pt_BR"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/5583981109396"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FelipeMarcasCG_PB - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
